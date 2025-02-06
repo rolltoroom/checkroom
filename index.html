@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll No to Room No Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Roll No to Room No Finder</h1>
+    <div>
+        <input type="number" id="rollNo" min="1" max="100" placeholder="Enter Roll No (1-100)">
+        <button onclick="findRoom()">Find Room No</button>
+    </div>
+    <div class="result" id="result"></div>
+
+    <script>
+        function findRoom() {
+            const rollNo = document.getElementById("rollNo").value;
+            const resultDiv = document.getElementById("result");
+
+            if (rollNo >= 1 && rollNo <= 100) {
+                // Calculate the room number by dividing the roll number into blocks of 10
+                const roomNo = Math.ceil(rollNo / 10);  // 1-10 → Room 1, 11-20 → Room 2, etc.
+                resultDiv.innerHTML = `Roll No ${rollNo} corresponds to Room No-${String(roomNo).padStart(2, '0')}`;
+            } else {
+                resultDiv.innerHTML = "Please enter a roll number between 1 and 100.";
+            }
+        }
+    </script>
+</body>
+</html>
