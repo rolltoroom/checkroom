@@ -64,6 +64,14 @@
             border-radius: 5px;
             display: inline-block;
         }
+
+        /* Styling for countdown and updated message */
+        .coming-soon {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffdd57;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -71,16 +79,54 @@
     <div class="exam-header">HSLC FINAL EXAM  03-03-2025 </div>
 
     <h1>Roll No to Room No Finder</h1>
-    <h2>Subject : Ad Maths and Computer Sc  </h2>
-    <div>
+    <h2>Subject: Ad Maths and Computer Sc </h2>
+
+    <!-- Countdown Message -->
+    <div id="comingSoon" class="coming-soon">
+        Link Form will live from 3rd March 2025 - 8:00 AM onwards...
+        <br>
+        <span id="countdown"></span>
+    </div>
+
+    <!-- Roll No Finder form -->
+    <div id="roomFinder" style="display:none;">
         <input type="number" id="rollNo" min="1" placeholder="Enter Only No">
         <button onclick="findRoom()">Find Room No</button>
+        <div class="result" id="result"></div>
     </div>
-    <div class="result" id="result"></div>
 
     <script>
+        // Set the target date and time (example: March 3rd, 2025, 8:00 AM)
+        const targetDate = new Date('March 3, 2025 08:00:00').getTime();
+
+        // Function to update the countdown
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeRemaining = targetDate - now;
+
+            // If the target date/time is reached or passed
+            if (timeRemaining <= 0) {
+                // Show the content
+                document.getElementById("comingSoon").style.display = "none";
+                document.getElementById("roomFinder").style.display = "block";
+            } else {
+                // Calculate days, hours, minutes, and seconds
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                // Display the countdown
+                document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        }
+
+        // Update the countdown every second
+        setInterval(updateCountdown, 1000);
+
+        // Room mapping and finder function
         const roomMapping = {
-            1: [172,219,220,223,224,227,228,233,238,241,246,248,252,253,254,260,267,268,271,273,274,278,282,297,300,302,303,311,312,317,321,336,337,341,348,349,354,355,356,359,361,363,367,368,369],	
+            1: [172,219,220,223,224,227,228,233,238,241,246,248,252,253,254,260,267,268,271,273,274,278,282,297,300,302,303,311,312,317,321,336,337,341,348,349,354,355,356,359,361,363,367,368,369],    
             2: [3,5,23,24,38,41,57,64,67,79,84,87,88,97,101,103,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137],
             3: [138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,187,189,190,191],
             4: [192,194,195,197,198,201,202,203,204,205,208,210,211,212,213,214,215,216,217,221,222,225,226,229,230,231,232,234,235,236,237,239,242,243,244,245],
@@ -89,12 +135,13 @@
             7: [346,347,350,351,352,353,357,360,364,365,366,370,371,372,374,375,376,377,378,379,381,383,384,385,386,388,389,390,391,392,393,394,395],
             8: [8,10,11,27,40,43,45,46,49,50,77,83,107,112,115,116,170,171,173,176,178,179,180,181,182,402,418,423],
             9: [],
-          10: [],
-          11: [],
-          12: [],	
+            10: [],
+            11: [],
+            12: [],    
             "HALL": []
         };
 
+        // Find Room function
         function findRoom() {
             const rollNo = parseInt(document.getElementById("rollNo").value);
             const resultDiv = document.getElementById("result");
