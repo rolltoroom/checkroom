@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roll No Search</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 40px; background: #f5f5f5; }
+    .card { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; }
+    input, button { width: 100%; padding: 10px; margin-top: 10px; font-size: 16px; }
+    .result { margin-top: 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Search by Roll No</h2>
+    <input type="number" id="rollInput" placeholder="Enter Roll No (e.g. 1, 50, 420)" />
+    <button onclick="searchStudent()">Search</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const students = [
+      {"roll":1,"name":"ABHINASH KALITA","room":"1"},
+      {"roll":2,"name":"ADIT CHUDHURY","room":"1"},
+      {"roll":4,"name":"AMANAT ALI","room":"1"},
+      {"roll":6,"name":"ASHIK EKBAL","room":"1"},
+      {"roll":7,"name":"ASHIM DAS","room":"1"},
+      {"roll":9,"name":"ASHKAT SAIKIA","room":"1"},
+      {"roll":10,"name":"ATIKUR ALI","room":"1"},
+      {"roll":11,"name":"BHARAT BEZBARUAH","room":"1"},
+      {"roll":12,"name":"BHASKAR JYOTI KASHYAP","room":"1"},
+      {"roll":14,"name":"CHANDAN BAISHYA","room":"1"},
+      {"roll":15,"name":"DHAN RAJ KALITA","room":"1"},
+      {"roll":16,"name":"DIBAKAR GOUR","room":"1"},
+      {"roll":17,"name":"DIPANKAR RAJBONGSHI","room":"1"},
+      {"roll":18,"name":"FIROZ ALI","room":"1"},
+      {"roll":19,"name":"HABIZUL ALI","room":"1"},
+      {"roll":20,"name":"HIMANGSHU DAS","room":"1"},
+      {"roll":21,"name":"HIMANGSHU DAS","room":"1"},
+      {"roll":22,"name":"ISHAD ALI AHMED","room":"1"},
+      {"roll":23,"name":"JESIM AKHTER RAHMAN","room":"1"},
+      {"roll":24,"name":"JITBEE KALITA","room":"1"},
+      {"roll":25,"name":"JON CHOUDHURY","room":"1"},
+      {"roll":26,"name":"KASTURI TUMUNG","room":"1"},
+      {"roll":27,"name":"KOBIJUL ISLAM","room":"1"},
+      {"roll":28,"name":"MAFIDUL ISLAM","room":"1"},
+      {"roll":29,"name":"MANAB DUTTA","room":"1"},
+      {"roll":30,"name":"MD SUEF ISLAM","room":"1"},
+      {"roll":31,"name":"MONIRUL ISLAM","room":"1"},
+      {"roll":32,"name":"MOUSAM NATH","room":"1"},
+      {"roll":33,"name":"NABA DAS","room":"1"},
+      {"roll":35,"name":"NITUMONI KALITA","room":"1"},
+      {"roll":36,"name":"PARAG JYOTI BAISHYA","room":"1"},
+      {"roll":37,"name":"PARTHA JIT KALITA","room":"1"},
+      {"roll":38,"name":"PARTHA KAKATI","room":"1"},
+      {"roll":39,"name":"PRANJIT DAS","room":"1"},
+      {"roll":40,"name":"PRITAM TALUKDAR","room":"1"},
+      {"roll":41,"name":"RAJ RAJBANGSHI","room":"1"},
+      {"roll":42,"name":"RANBIR DEKA","room":"1"},
+      {"roll":43,"name":"REHAN SHEIKH","room":"1"},
+      {"roll":45,"name":"RIHAN MOLLIK","room":"1"},
+      {"roll":46,"name":"RIYAN WARSI","room":"1"},
+      {"roll":48,"name":"SAHIL HUSSAIN","room":"1"},
+
+      /* ... DATA CONTINUES ... */
+
+      {"roll":420,"name":"TRIBENI SONOWAL","room":"HALL"}
+    ];
+
+    function searchStudent() {
+      const roll = parseInt(document.getElementById("rollInput").value);
+      const student = students.find(s => s.roll === roll);
+
+      const resultDiv = document.getElementById("result");
+      if (student) {
+        resultDiv.innerHTML = `
+          <strong>Name:</strong> ${student.name}<br/>
+          <strong>Room No:</strong> ${student.room}
+        `;
+      } else {
+        resultDiv.innerHTML = "❌ No record found for this Roll No.";
+      }
+    }
+  </script>
+</body>
+</html>
 
