@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roll No to Room No Finder</title>
-    
     <style>
-        /* Apply background gradient */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -19,16 +17,12 @@
             align-items: center;
             justify-content: center;
         }
-
-        /* Styling for HSLC FINAL EXAM  03-03-2025 */
         .exam-header {
             font-size: 30px;
             font-weight: bold;
             margin-bottom: 20px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
-
-        /* Styling for input and button */
         input {
             padding: 10px;
             font-size: 16px;
@@ -37,7 +31,6 @@
             margin-right: 10px;
             width: 200px;
         }
-
         button {
             padding: 10px 20px;
             font-size: 16px;
@@ -45,16 +38,9 @@
             border: none;
             border-radius: 5px;
             background: #ff4757;
-            color: White;
+            color: white;
             font-weight: bold;
-            transition: 0.3s;
         }
-
-        button:hover {
-            background: #ff6b81;
-        }
-
-        /* Styling for result box */
         .result {
             margin-top: 20px;
             font-size: 22px;
@@ -64,8 +50,6 @@
             border-radius: 5px;
             display: inline-block;
         }
-
-        /* Styling for countdown and updated message */
         .coming-soon {
             font-size: 24px;
             font-weight: bold;
@@ -75,89 +59,78 @@
     </style>
 </head>
 <body>
-    <!-- HSLC FINAL EXAM  03-03-2025 Header -->
-    <div class="exam-header"> SITE IS CLOSED  </div>
 
-    <h1>Roll No to Room No Finder</h1>
-    <h2>Subject: MIL Assamese  and Hinhi medium </h2>
+<div class="exam-header">SITE IS CLOSED</div>
 
-    <!-- Countdown Message -->
-    <div id="comingSoon" class="coming-soon">
-        Link Form will live from 10th february 2026 - 8:00 AM onwards...
-        <br>
-        <span id="countdown"></span>
-    </div>
+<h1>Roll No to Room No Finder</h1>
+<h2>Subject: MIL Assamese and Hindi medium</h2>
 
-    <!-- Roll No Finder form -->
-    <div id="roomFinder" style="display:none;">
-        <input type="number" id="rollNo" min="1" placeholder="Enter Only No">
-        <button onclick="findRoom()">Find Room No</button>
-        <div class="result" id="result"></div>
-    </div>
+<div id="comingSoon" class="coming-soon">
+    Link Form will live from 10th February 2026 - 8:00 AM onwards...
+    <br>
+    <span id="countdown"></span>
+</div>
 
-    <script>
-        // Set the target date and time (example: March 3rd, 2025, 8:00 AM)
-        const targetDate = new Date('February 10, 2025 08:00:00').getTime();
+<div id="roomFinder" style="display:none;">
+    <input type="number" id="rollNo" placeholder="Enter Only No">
+    <button onclick="findRoom()">Find Room No</button>
+    <div class="result" id="result"></div>
+</div>
 
-        // Function to update the countdown
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const timeRemaining = targetDate - now;
+<script>
+const targetDate = new Date('February 10, 2026 08:00:00').getTime();
 
-            // If the target date/time is reached or passed
-            if (timeRemaining <= 0) {
-                // Show the content
-                document.getElementById("comingSoon").style.display = "none";
-                document.getElementById("roomFinder").style.display = "block";
-            } else {
-                // Calculate days, hours, minutes, and seconds
-                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+function updateCountdown() {
+    const now = new Date().getTime();
+    const timeRemaining = targetDate - now;
 
-                // Display the countdown
-                document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            }
+    if (timeRemaining <= 0) {
+        document.getElementById("comingSoon").style.display = "none";
+        document.getElementById("roomFinder").style.display = "block";
+    } else {
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+        document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+}
+setInterval(updateCountdown, 1000);
+
+const roomMapping = {
+    1: ["0001","0002","0003","0004","0005","0006","0007","0008","0009","0010","0011","0012","0013","0014","0015","0016","0017","0018","0019","0020","0021","0022","0023","0024","0025","0026","0027","0028","0029","0030","0031","0032","0033","0034","0035","0036","0037","0038","0039","0040","0041","0042","0043","0044","0045","0046","0047","0048"],
+    2: ["0049","0050","0051","0052","0053","0054","0055","0056","0057","0058","0059","0060","0061","0062","0063","0064","0065","0066","0067","0068","0069","0070","0071","0072","0073","0074","0075","0076","0077","0078","0079","0080","0081","0082","0083","0084"],
+    3: ["0085","0086","0087","0088","0089","0090","0091","0092","0093","0094","0095","0096","0097","0098","0099","0100","0101","0102","0103","0104","0105","0106","0107","0108","0109","0110","0111","0112","0113","0114","0115","0116","0117","0118","0119","0120"],
+    4: ["0121","0122","0123","0124","0125","0126","0127","0128","0129","0130","0131","0132","0133","0134","0135","0136","0137","0138","0139","0140","0141","0142","0143","0144","0145","0146","0147","0148","0149","0150","0151","0152","0153","0154","0155","0156"],
+    5: ["0157","0158","0159","0160","0161","0162","0163","0164","0165","0166","0167","0168","0169","0170","0171","0172","0173","0174","0175","0176","0177","0178","0179","0180","0181","0182","0183","0184","0185","0186","0187","0188","0189","0190","0191","0192"],
+    6: ["0193","0194","0195","0196","0197","0198","0199","0200","0201","0202","0203","0204","0205","0206","0207","0208","0209","0210","0211","0212","0213","0214","0215","0216","0217","0218","0219","0220","0221","0222","0223","0224","0225","0226","0227","0228"],
+    7: ["0229","0230","0231","0232","0233","0234","0235","0236","0237","0238","0239","0240","0241","0242","0243","0244","0245","0246","0247","0248","0249","0250","0251","0252","0253","0254","0255","0256","0257","0258","0259","0260","0261","0262","0263","0264"],
+    8: ["0265","0266","0267","0268","0269","0270","0271","0272","0273","0274","0275","0276","0277","0278","0279","0280","0281","0282","0283","0284","0285","0286","0287","0288","0289","0290","0291","0292","0293","0294","0295","0296","0297","0298","0299","0300"],
+    9: ["0301","0302","0303","0304","0305","0306","0307","0308","0309","0310","0311","0312","0313","0314","0315","0316","0317","0318","0319","0320","0321","0322","0323","0324","0325","0326","0327","0328","0329","0330","0331","0332","0333","0334","0335","0336"],
+    10:["0337","0338","0339","0340","0341","0342","0343","0344","0345","0346","0347","0348","0349","0350","0351","0352","0353","0354","0355","0356","0357","0358","0359"],
+    "HALL":["0360","0361","0362","0363","0364","0365","0366","0367","0368","0369","0370","0371","0372","0373","0374","0375","0376","0377","0378","0379","0380","0381","0382","0383","0384","0385","0386","0387","0388","0389","0390","0391","0392","0393","0394","0395","0396","0397","0398","0399","0400","0401","0402","0403","0404","0405","0406","0407","0408","0409","0410","0411","0412","0413","0414","0415","0416","0417","0418","0419","0420"]
+};
+
+function findRoom() {
+    let rollNo = document.getElementById("rollNo").value.trim();
+    rollNo = rollNo.padStart(4, "0");
+
+    let foundRoom = null;
+    for (const [room, rolls] of Object.entries(roomMapping)) {
+        if (rolls.includes(rollNo)) {
+            foundRoom = room;
+            break;
         }
+    }
 
-        // Update the countdown every second
-        setInterval(updateCountdown, 1000);
+    document.getElementById("result").innerHTML = foundRoom
+        ? `YOUR ROOM NO IS : ${foundRoom}`
+        : "Roll No not assigned to any room.";
+}
+</script>
 
-        // Room mapping and finder function
-        const roomMapping = {
-            1: [0001,0002,0003,0004,0005,0006,0007,0008,0009,0010,0011,0012,0013,0014,0015,0016,0017,0018,0019,0020,0021,0022,0023,0024,0025,0026,0027,0028,0029,0030,0031,0032,0033,0034,0035,0036,0037,0038,0039,0040,0041,0042,0043,0044,0045,0046,0047,0048 ],    
-            2: [0049,0050,0051,0052,0053,0054,0055,0056,0057,0058,0059,0060,0061,0062,0063,0064,0065,0066,0067,0068,0069,0070,0071,0072,0073,0074,0075,0076,0077,0078,0079,0080,0081,0082,0083,0084],
-            3: [0085,0086,0087,0088,0089,0090,0091,0092,0093,0094,0095,0096,0097,0098,0099,0100,0101,0102,0103,0104,0105,0106,0107,0108,0109,0110,0111,0112,0113,0114,0115,0116,0117,0118,0119,0120 ],
-            4: [0121,0122,0123,0124,0125,0126,0127,0128,0129,0130,0131,0132,0133,0134,0135,0136,0137,0138,0139,0140,0141,0142,0143,0144,0145,0146,0147,0148,0149,0150,0151,0152,0153,0154,0155,0156 ],
-            5: [0157,0158,0159,0160,0161,0162,0163,0164,0165,0166,0167,0168,0169,0170,0171,0172,0173,0174,0175,0176,0177,0178,0179,0180,0181,0182,0183,0184,0185,0186,0187,0188,0189,0190,0191,0192 ],
-            6: [0193,0194,0195,0196,0197,0198,0199,0200,0201,0202,0203,0204,0205,0206,0207,0208,0209,0210,0211,0212,0213,0214,0215,0216,0217,0218,0219,0220,0221,0222,0223,0224,0225,0226,0227,0228 ],
-            7: [0229,0230,0231,0232,0233,0234,0235,0236,0237,0238,0239,0240,0241,0242,0243,0244,0245,0246,0247,0248,0249,0250,0251,0252,0253,0254,0255,0256,0257,0258,0259,0260,0261,0262,0263,0264 ],
-            8: [0265,0266,0267,0268,0269,0270,0271,0272,0273,0274,0275,0276,0277,0278,0279,0280,0281,0282,0283,0284,0285,0286,0287,0288,0289,0290,0291,0292,0293,0294,0295,0296,0297,0298,0299,0300 ],
-            9: [0301,0302,0303,0304,0305,0306,0307,0308,0309,0310,0311,0312,0313,0314,0315,0316,0317,0318,0319,0320,0321,0322,0323,0324,0325,0326,0327,0328,0329,0330,0331,0332,0333,0334,0335,0336 ],
-            10: [0337,0338,0339,0340,0341,0342,0343,0344,0345,0346,0347,0348,0349,0350,0351,0352,0353,0354,0355,0356,0357,0358,0359 ],
-            11: [],
-            12: [],    
-            "HALL": [0360,0361,0362,0363,0364,0365,0366,0367,0368,0369,0370,0371,0372,0373,0374,0375,0376,0377,0378,0379,0380,0381,0382,0383,0384,0385,0386,0387,0388,0389,0390,0391,0392,0393,0394,0395,0396,0397,0398,0399,0400,0401,0402,0403,0404,0405,0406,0407,0408,,0409,0410,0411,0412,0413,0414,0415,0416,0417,0418,0419,0420 ]
-        };
-
-        // Find Room function
-        function findRoom() {
-            const rollNo = parseInt(document.getElementById("rollNo").value);
-            const resultDiv = document.getElementById("result");
-            let foundRoom = "Not Found";
-            
-            for (const [room, rollNumbers] of Object.entries(roomMapping)) {
-                if (rollNumbers.includes(rollNo)) {
-                    foundRoom = ` ${room}`;
-                    break;
-                }
-            }
-
-            resultDiv.innerHTML = foundRoom === "Not Found" ? "Roll No not assigned to any room." : `YOUR ROOM NO IS : ${foundRoom}`;
-        }
-    </script>
 </body>
 </html>
+
 
 
